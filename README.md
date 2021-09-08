@@ -3,7 +3,8 @@
 Capture the open tabs in the browser and count them, if you open the console log of the background.js you can see the logs actively when you open/close a tab !
 
 ![Screenshot 2021-09-08 at 20 30 24](https://user-images.githubusercontent.com/17232450/132565143-7a591486-c365-4fb4-8f3a-2ba2efa96c97.png)
-Refrences: Used method from https://gist.github.com/jlewin/5343915
+Refrences:
+Used method from https://gist.github.com/jlewin/5343915 and some functions from "homepage_url": "https://github.com/sylouuu/chrome-open-tabs".
 
 If you liked that dont forget to support
 donate a bier for me under paypal link :
