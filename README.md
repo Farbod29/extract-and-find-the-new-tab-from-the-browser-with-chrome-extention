@@ -10,8 +10,6 @@ donate a bier for me under paypal link :
 
 https://paypal.me/FARBODAPRIN?locale.x=en_US
 
-https://www.paypal.com/donate?hosted_button_id=KZCP6RUTYSS44
-
 
 ![Screenshot 2021-09-08 at 20 35 08](https://user-images.githubusercontent.com/17232450/132565783-4d857ff6-6ff9-47b4-81b5-a52f2283e55c.png)
 
