@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "ind count the Open Tabs in browser ",
+  "version": "0.3.2",
+  "description": "Show open tabs",
+  "homepage_url": "https://github.com/sylouuu/chrome-open-tabs",
+
+  "content_security_policy": "script-src 'self' https://ajax.googleapis.com https://www.google-analytics.com; object-src 'self'",
+
+  "options_page": "options.html",
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "web_accessible_resources": ["img/*.png"],
+
+  "permissions": ["tabs", "storage"]
+}
