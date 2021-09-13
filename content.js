@@ -1,35 +1,12 @@
-// let currentUlr = window.location.toString();
-// console.log(" currentUlr content");
-// console.log(currentUlr);
-// // chrome.tabs.sendMessage(tab.url, "toggle");
+let currentUlr = window.location.toString();
+console.log(" currentUlr content");
+console.log(currentUlr);
 
-// function notifyReady() {
-//   chrome.runtime.sendMessage(
-//     {
-//       type: "ACTIVITY_HISTORY_READY",
-//       sosis: "bandari",
-//     },
-//     function (response) {
-//       console.log(">>>>Response: ", response);
-//       if (response.type == "HISTORY_DATA") {
-//         processLog(response);
-//       }
-//     }
+// chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+//   console.log(
+//     sender.tab
+//       ? "from a content script:" + sender.tab.url
+//       : "from the extension"
 //   );
-// }
-
-// chrome.runtime.sendMessage({ currentUlr: currentUlr }, function (response) {
-//   console.log(response.farewell);
+//   if (request.greeting === "hello") sendResponse({ farewell: currentUlr });
 // });
-
-// chrome.runtime.onMessage.addListener(function (msg) {
-//   console.log("message is", msg);
-//   sendResponse({ farewell: "goodbye umad" });
-// });
-
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  console.log(
-    sender.tab ? "from a bk script:" + sender.tab.url : "from the extension"
-  );
-  if (request.greeting === "hello") sendResponse({ farewell: "goodbye" });
-});
