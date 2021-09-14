@@ -1,18 +1,31 @@
 console.log("url vase app kochoulo EMAM");
 
-// chrome.browserAction.onClicked.addListener(function (tabs) {
-//   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-//     chrome.tabs.sendMessage(
-//       tabs[0].id,
-//       { greeting: "hello" },
-//       function (response) {
-//         console.log(response.farewell);
-//       }
-//     );
-//   });
-// });
 let count = 0;
 let observedLinkArr = [];
+let uniqueCount = 0;
+let newUniqueCount = 0;
+
+// function locationHashChanged() {
+//   if (location.hash === '#cool-feature') {
+//     console.log("You're visiting a cool feature! xxxx0000");
+//   }
+// }
+// document.getElementById("myBtn").addEventListener("click", function () {
+//   alert("Hello World!111");
+// });
+window.addEventListener("onhashchange", function () {
+  //url hash # has changed
+});
+window.addEventListener("locationchange", function () {
+  console.log("location changed!");
+});
+window.onhashchange = function () {
+  console.log("location changed1!");
+};
+
+window.onpopstate = function () {
+  console.log("location changed2");
+};
 
 let options_url = chrome.extension.getURL("html/options.html"),
   openOptionsPage,
@@ -26,21 +39,23 @@ let options_url = chrome.extension.getURL("html/options.html"),
 
 openOptionsPage = function (hash) {
   chrome.tabs.query({ url: options_url }, function (tabs) {
-    // console.log(options_url);
     if (tabs.length > 0) {
       chrome.tabs.update(
         tabs[0].id,
         { active: true, highlighted: true, currentWindow: true },
+
         function (current_tab) {
           chrome.windows.update(current_tab.windowId, { focused: true });
         }
       );
     } else {
+      window.addEventListener(hash, function () {
+        //url hash # has changed
+        console.log(" //url hash # has changed 3");
+      });
       chrome.tabs.create({
         url: hash !== undefined ? options_url + "#" + hash : options_url,
       });
-      //   console.log("options_url");
-      //   console.log(options_url);
     }
   });
 };
@@ -52,9 +67,7 @@ getOpenTabsCount = function (callback) {
         window.tabs.forEach(function (tab) {
           observedLinkArr.indexOf(tab.url) === -1 && tab.url !== ""
             ? observedLinkArr.push(tab.url)
-            : console.log("This item already exists");
-          // localStorage.setItem("names", JSON.stringify(names));
-          // let storedNames = JSON.parse(localStorage.getItem("names"));
+            : console.log("This URL item already exists");
         });
       });
     });
@@ -63,29 +76,12 @@ getOpenTabsCount = function (callback) {
       let i = 0;
       windows.forEach(function (window) {
         window.tabs.forEach(function (tab) {
-          //collect all of the urls here, I will just log them instead
-          // console.log(tab.url);
           i++;
         });
       });
-      // console.log("tab.url aaaaakahari  3");
-      // console.log(i);
     });
-    chrome.windows.getAll({ populate: true }, function (allWindows) {
-      // console.log("tab.url aaaaakahari 1 ");
-      // console.log(allWindows);
-    });
+    chrome.windows.getAll({ populate: true }, function (allWindows) {});
     count -= tabs.length;
-
-    // chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    //   chrome.tabs.sendMessage(
-    //     tabs[0].id,
-    //     { greeting: "hello" },
-    //     function (response) {
-    //       if (response != undefined) console.log(response.farewell);
-    //     }
-    //   );
-    // });
     chrome.tabs.query({}, function (tabs) {
       count += tabs.length;
 
@@ -96,14 +92,9 @@ getOpenTabsCount = function (callback) {
 
 getStorage = function (callback) {
   chrome.storage.local.get("open_tabs", function (items) {
-    // let storedNames = localStorage.getItem("arr1");
-    // console.log("Stored Names");
-    // console.log(storedNames);
     callback(items.open_tabs);
   });
 };
-
-// chrome.browserAction.setBadgeBackgroundColor({ color: "#1E88E5" });
 
 updateBrowserActionBadge = function (open_tabs) {
   if (
@@ -111,12 +102,24 @@ updateBrowserActionBadge = function (open_tabs) {
     open_tabs.settings.show_browser_action_count === true
   ) {
     getOpenTabsCount(function (count) {
-      //   chrome.browserAction.setBadgeText({ text: count.toString() });
+      function locationHashChanged() {
+        if (location.hash === "#cool-feature") {
+          console.log("You're visiting a cool feature! xxxx0000");
+        }
+      }
       console.log(" set of observerdLink");
       console.log(observedLinkArr);
+      newUniqueCount = observedLinkArr.length;
+      console.log("new Unique Count");
+      console.log(newUniqueCount);
+      console.log("Unique Count");
+      console.log(uniqueCount);
+      if (newUniqueCount > uniqueCount) {
+        console.log("new unique URL added !!!!!!!!!!!!!!!!");
+        uniqueCount = newUniqueCount;
+      }
     });
   } else {
-    // chrome.browserAction.setBadgeText({ text: "" });
   }
 };
 
@@ -128,19 +131,49 @@ handleBrowserActionBadgeEvents = function () {
   };
 
   getStorage(function (open_tabs) {
-    // console.log("tab_listener");
-    // console.log(tab_listener);
     if (
       open_tabs === undefined ||
       open_tabs.settings.show_browser_action_count === true
     ) {
+      window.addEventListener("onhashchange", function () {
+        //url hash # has changed
+        console.log(" //url hash # has changed");
+      });
+      function locationHashChanged() {
+        if (location.hash === "#cool-feature") {
+          console.log("You're visiting a cool feature! xxxx");
+        }
+      }
+      chrome.tabs.onActivated.addListener(tab_listener);
+      chrome.tabs.onActiveChanged.addListener(tab_listener);
+      chrome.tabs.onAttached.addListener(tab_listener);
       chrome.tabs.onCreated.addListener(tab_listener);
+      chrome.tabs.onDetached.addListener(tab_listener);
+      chrome.tabs.onMoved.addListener(tab_listener);
+      chrome.tabs.onHighlightChanged.addListener(tab_listener);
+      chrome.tabs.onHighlighted.addListener(tab_listener);
+      chrome.tabs.onActiveChanged.addListener(tab_listener);
+      chrome.tabs.onSelectionChanged.addListener(tab_listener);
+      chrome.tabs.onUpdated.addListener(tab_listener);
+      chrome.tabs.onReplaced.addListener(tab_listener);
+      chrome.tabs.onZoomChange.addListener(tab_listener);
       chrome.tabs.onRemoved.addListener(tab_listener);
     } else {
-      chrome.tabs.onCreated.removeListener(tab_listener);
-      chrome.tabs.onRemoved.removeListener(tab_listener);
+      chrome.tabs.onActivated.addListener(tab_listener);
+      chrome.tabs.onActiveChanged.addListener(tab_listener);
+      chrome.tabs.onAttached.addListener(tab_listener);
+      chrome.tabs.onCreated.addListener(tab_listener);
+      chrome.tabs.onDetached.addListener(tab_listener);
+      chrome.tabs.onMoved.addListener(tab_listener);
+      chrome.tabs.onHighlightChanged.addListener(tab_listener);
+      chrome.tabs.onHighlighted.addListener(tab_listener);
+      chrome.tabs.onActiveChanged.addListener(tab_listener);
+      chrome.tabs.onSelectionChanged.addListener(tab_listener);
+      chrome.tabs.onUpdated.addListener(tab_listener);
+      chrome.tabs.onReplaced.addListener(tab_listener);
+      chrome.tabs.onZoomChange.addListener(tab_listener);
+      chrome.tabs.onRemoved.addListener(tab_listener);
     }
-
     updateBrowserActionBadge(open_tabs);
   });
 };
@@ -148,15 +181,9 @@ handleBrowserActionBadgeEvents = function () {
 // --------------------------------------------------------------------------------------------------------
 // Events
 
-// chrome.browserAction.onClicked.addListener(function () {
-//   openOptionsPage();
-// });
-
 handleBrowserActionBadgeEvents();
 
 chrome.runtime.onInstalled.addListener(function (details) {
-  // console.log("details");
-  // console.log(details);
   switch (details.reason) {
     case "install":
       openOptionsPage("install");
@@ -179,48 +206,3 @@ chrome.runtime.onInstalled.addListener(function (details) {
 });
 
 ////////////////////////////////////////////////////////////////
-
-// chrome.windows.getAll({ populate: true }, function (allWindows) {
-//   console.log("tab.url aaaaakahari 1 ");
-//   console.log(allWindows);
-// });
-
-// chrome.windows.getAll({ populate: true }, function (windows) {
-//   windows.forEach(function (window) {
-//     window.tabs.forEach(function (tab) {
-//       //collect all of the urls here, I will just log them instead
-//       console.log("tab.url aaaaakahari 2");
-//       console.log(tab.url);
-//     });
-//   });
-// });
-// ////////////////////////////////
-// chrome.windows.getAll({ populate: true }, function (windows) {
-//   let i = 0;
-//   windows.forEach(function (window) {
-//     window.tabs.forEach(function (tab) {
-//       //collect all of the urls here, I will just log them instead
-//       console.log(tab.url);
-//       i++;
-//     });
-//   });
-//   console.log("tab.url aaaaakahari  3");
-//   console.log(i);
-// });
-
-////////////send data to content ////////////////////////////////////////////////////
-// chrome.browserAction.onClicked.addListener(function (tabs) {
-//   chrome.tabs.query(
-//     { active: true, currentWindow: true },
-//     function (tabs) {
-//       chrome.tabs.sendMessage(
-//         tabs[0].id,
-//         { greeting: "hello" },
-//         function (response) {
-//           console.log(response.farewell);
-//         }
-//       );
-//     }
-//   );
-// });
-/////////////////////////////////========
