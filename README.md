@@ -1,5 +1,7 @@
 # extract and find the new tab url frome the browser with chrome extention
 
+Last coomit merged => count all unique tabs that open by the user , store all open url by the user to an array.
+
 Capture the open tabs in the browser and count them, if you open the console log of the background.js you can see the logs actively when you open/close a tab !
 
 ![Screenshot 2021-09-08 at 20 30 24](https://user-images.githubusercontent.com/17232450/132565143-7a591486-c365-4fb4-8f3a-2ba2efa96c97.png)
@@ -17,6 +19,8 @@ https://paypal.me/FARBODAPRIN?locale.x=en_US
 
 <img src="https://user-images.githubusercontent.com/17232450/132566016-c716891f-8bdc-43c3-b057-854d9d244ee0.jpg" width= "230px">
 
+
+# Donate
 
 <form action="https://www.paypal.com/donate" method="post" target="_top">
 <input type="hidden" name="hosted_button_id" value="KZCP6RUTYSS44" />
