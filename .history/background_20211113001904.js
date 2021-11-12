@@ -110,6 +110,7 @@ updateBrowserActionBadge = function (open_tabs) {
         console.log(newUniqueTabCount);
         uniqueTabCount = newUniqueTabCount;
         console.log(observedLinkArr);
+
         const openTabsAndTheirCounts = async (
           uniqueTabCount,
           observedLinkArr,
@@ -140,8 +141,6 @@ updateBrowserActionBadge = function (open_tabs) {
             console.log("got problem in fetch API ");
           }
         };
-        let userToken = "ExampleUserToken";
-        let experienceId = "experienceId";
         openTabsAndTheirCounts(
           uniqueTabCount,
           observedLinkArr,
