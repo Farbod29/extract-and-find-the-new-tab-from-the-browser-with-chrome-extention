@@ -10,6 +10,9 @@ Capture the open tabs in the browser and count them, if you open the console log
 Refrences:
 Used method from https://gist.github.com/jlewin/5343915 and some functions from "homepage_url": "https://github.com/sylouuu/chrome-open-tabs".
 
+Last open tabed by the user:
+![Screenshot 2021-11-13 at 00 07 41](https://user-images.githubusercontent.com/17232450/141594145-d8c06585-4deb-4baf-984b-585955fca166.png)
+
 
 # Donate
 
