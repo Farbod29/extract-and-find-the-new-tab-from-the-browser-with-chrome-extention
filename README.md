@@ -7,12 +7,17 @@ Capture the open tabs in the browser and count them, if you open the console log
 ### Here in this picture the user opened and seen 17 pages which you can see in the console ! 
 
 ![Screenshot 2021-09-08 at 20 30 24](https://user-images.githubusercontent.com/17232450/132565143-7a591486-c365-4fb4-8f3a-2ba2efa96c97.png)
-Refrences:
-Used method from https://gist.github.com/jlewin/5343915 and some functions from "homepage_url": "https://github.com/sylouuu/chrome-open-tabs".
+
 
 Last open tabed by the user:
 ![Screenshot 2021-11-13 at 00 07 41](https://user-images.githubusercontent.com/17232450/141594145-d8c06585-4deb-4baf-984b-585955fca166.png)
 
+# How to use this extention ?
+
+after clone, just load unpack the folder from chrome extention setting in chrome browser.
+
+## Refrences:
+Used method from https://gist.github.com/jlewin/5343915 and some functions from "homepage_url": "https://github.com/sylouuu/chrome-open-tabs".
 
 # Donate
 
@@ -27,8 +32,6 @@ donate a bier for me under paypal link :
 
 
 <img src="https://user-images.githubusercontent.com/17232450/132566016-c716891f-8bdc-43c3-b057-854d9d244ee0.jpg" width= "230px">
-
-
 
 <form action="https://www.paypal.com/donate" method="post" target="_top">
 <input type="hidden" name="hosted_button_id" value="KZCP6RUTYSS44" />
