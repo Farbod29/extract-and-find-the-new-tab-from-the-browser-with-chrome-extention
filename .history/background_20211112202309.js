@@ -2,8 +2,8 @@ console.log("url vase app kochoulo EMAM");
 
 let count = 0;
 let observedLinkArr = [];
-let uniqueTabCount = 0;
-let newUniqueTabCount = 0;
+let uniqueCount = 0;
+let newUniqueCount = 0;
 
 // function locationHashChanged() {
 //   if (location.hash === '#cool-feature') {
@@ -52,9 +52,7 @@ getOpenTabsCount = function (callback) {
     chrome.windows.getAll({ populate: true }, function (windows) {
       windows.forEach(function (window) {
         window.tabs.forEach(function (tab) {
-          observedLinkArr.indexOf(tab.url) === -1 &&
-          tab.url !== "" &&
-          tab.url !== "chrome://newtab/" // ( x )? if x true: if x false
+          observedLinkArr.indexOf(tab.url) === -1 && tab.url !== "" // ( x )? if x true: if x false
             ? observedLinkArr.push(tab.url)
             : console.log("This URL item already exists");
         });
@@ -98,60 +96,21 @@ updateBrowserActionBadge = function (open_tabs) {
       }
       // console.log(" set of observerdLink");
       //
-      newUniqueTabCount = observedLinkArr.length;
+      newUniqueCount = observedLinkArr.length;
       // console.log("new Unique Count");
-      // console.log(newUniqueTabCount);
+      // console.log(newUniqueCount);
       // console.log("Unique Count");
-      // console.log(uniqueTabCount);
-
-      ////////////////////////////////////////////////////API section////////////////////////////////////////////////
-      if (newUniqueTabCount > uniqueTabCount) {
+      // console.log(uniqueCount);
+      if (newUniqueCount > uniqueCount) {
         console.log("new unique URL added !!!!!!!!!!!!!!!!");
-        console.log(newUniqueTabCount);
-        uniqueTabCount = newUniqueTabCount;
+        console.log(newUniqueCount);
+        uniqueCount = newUniqueCount;
         console.log(observedLinkArr);
-        openTabsAndTheirCounts(
-          uniqueTabCount,
-          observedLinkArr,
-          userToken,
-          experienceId
-        );
-        const openTabsAndTheirCounts = async (
-          uniqueTabCount,
-          observedLinkArr,
-          userToken,
-          experienceId
-        ) => {
-          try {
-            const res = await fetch(
-              // fetch (url,{})
-              "http://localhost:3005/opentabsandtheircounts", //TODO: can usr names be upperCase
-              {
-                method: "POST",
-                body: JSON.stringify({
-                  uniqueTabCount: uniqueTabCount,
-                  observedLinkArr: observedLinkArr,
-                  userToken: userToken,
-                  experienceId: experienceId,
-                }),
-                headers: {
-                  "content-type": "application/json",
-                },
-              }
-            );
-            // console.log(res);
-            let result = await res.json();
-            return result;
-          } catch (error) {
-            console.log("got problem in fetch API ");
-          }
-        };
+
+        ////////////////////////////////////////////////
       }
     });
   } else {
-    console.log(
-      "!( open_tabs === undefined || open_tabs.settings.show_browser_action_count === true)"
-    );
   }
 };
 

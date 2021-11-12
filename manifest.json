@@ -4,11 +4,16 @@
   "version": "0.3.2",
   "description": "Show open tabs",
   "homepage_url": "https://github.com/sylouuu/chrome-open-tabs",
-
+  "browser_action": {},
   "content_security_policy": "script-src 'self' https://ajax.googleapis.com https://www.google-analytics.com; object-src 'self'",
 
   "options_page": "options.html",
-
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
   "background": {
     "scripts": ["background.js"]
   },

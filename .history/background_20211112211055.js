@@ -2,8 +2,8 @@ console.log("url vase app kochoulo EMAM");
 
 let count = 0;
 let observedLinkArr = [];
-let uniqueTabCount = 0;
-let newUniqueTabCount = 0;
+let uniqueCount = 0;
+let newUniqueCount = 0;
 
 // function locationHashChanged() {
 //   if (location.hash === '#cool-feature') {
@@ -98,30 +98,20 @@ updateBrowserActionBadge = function (open_tabs) {
       }
       // console.log(" set of observerdLink");
       //
-      newUniqueTabCount = observedLinkArr.length;
+      newUniqueCount = observedLinkArr.length;
       // console.log("new Unique Count");
-      // console.log(newUniqueTabCount);
+      // console.log(newUniqueCount);
       // console.log("Unique Count");
-      // console.log(uniqueTabCount);
+      // console.log(uniqueCount);
 
       ////////////////////////////////////////////////////API section////////////////////////////////////////////////
-      if (newUniqueTabCount > uniqueTabCount) {
+      if (newUniqueCount > uniqueCount) {
         console.log("new unique URL added !!!!!!!!!!!!!!!!");
-        console.log(newUniqueTabCount);
-        uniqueTabCount = newUniqueTabCount;
+        console.log(newUniqueCount);
+        uniqueCount = newUniqueCount;
         console.log(observedLinkArr);
-        openTabsAndTheirCounts(
-          uniqueTabCount,
-          observedLinkArr,
-          userToken,
-          experienceId
-        );
-        const openTabsAndTheirCounts = async (
-          uniqueTabCount,
-          observedLinkArr,
-          userToken,
-          experienceId
-        ) => {
+        openTabsAndTheirCounts(uniqueCount, observedLinkArr);
+        const openTabsAndTheirCounts = async (uniqueCount, observedLinkArr) => {
           try {
             const res = await fetch(
               // fetch (url,{})
@@ -129,10 +119,8 @@ updateBrowserActionBadge = function (open_tabs) {
               {
                 method: "POST",
                 body: JSON.stringify({
-                  uniqueTabCount: uniqueTabCount,
+                  uniqueCount: uniqueCount,
                   observedLinkArr: observedLinkArr,
-                  userToken: userToken,
-                  experienceId: experienceId,
                 }),
                 headers: {
                   "content-type": "application/json",
