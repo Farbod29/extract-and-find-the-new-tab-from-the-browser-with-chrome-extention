@@ -13,19 +13,6 @@ let newUniqueCount = 0;
 // document.getElementById("myBtn").addEventListener("click", function () {
 //   alert("Hello World!111");
 // });
-window.addEventListener("onhashchange", function () {
-  //url hash # has changed
-});
-window.addEventListener("locationchange", function () {
-  console.log("location changed!");
-});
-window.onhashchange = function () {
-  console.log("location changed1!");
-};
-
-window.onpopstate = function () {
-  console.log("location changed2");
-};
 
 let options_url = chrome.extension.getURL("html/options.html"),
   openOptionsPage,
