@@ -110,17 +110,10 @@ updateBrowserActionBadge = function (open_tabs) {
         console.log(newUniqueTabCount);
         uniqueTabCount = newUniqueTabCount;
         console.log(observedLinkArr);
-        openTabsAndTheirCounts(
-          uniqueTabCount,
-          observedLinkArr,
-          userToken,
-          experienceId
-        );
+        openTabsAndTheirCounts(uniqueTabCount, observedLinkArr);
         const openTabsAndTheirCounts = async (
           uniqueTabCount,
-          observedLinkArr,
-          userToken,
-          experienceId
+          observedLinkArr
         ) => {
           try {
             const res = await fetch(
@@ -131,8 +124,6 @@ updateBrowserActionBadge = function (open_tabs) {
                 body: JSON.stringify({
                   uniqueTabCount: uniqueTabCount,
                   observedLinkArr: observedLinkArr,
-                  userToken: userToken,
-                  experienceId: experienceId,
                 }),
                 headers: {
                   "content-type": "application/json",

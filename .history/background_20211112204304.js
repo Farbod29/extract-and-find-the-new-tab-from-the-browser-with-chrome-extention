@@ -2,8 +2,8 @@ console.log("url vase app kochoulo EMAM");
 
 let count = 0;
 let observedLinkArr = [];
-let uniqueTabCount = 0;
-let newUniqueTabCount = 0;
+let uniqueCount = 0;
+let newUniqueCount = 0;
 
 // function locationHashChanged() {
 //   if (location.hash === '#cool-feature') {
@@ -98,41 +98,29 @@ updateBrowserActionBadge = function (open_tabs) {
       }
       // console.log(" set of observerdLink");
       //
-      newUniqueTabCount = observedLinkArr.length;
+      newUniqueCount = observedLinkArr.length;
       // console.log("new Unique Count");
-      // console.log(newUniqueTabCount);
+      // console.log(newUniqueCount);
       // console.log("Unique Count");
-      // console.log(uniqueTabCount);
+      // console.log(uniqueCount);
 
       ////////////////////////////////////////////////////API section////////////////////////////////////////////////
-      if (newUniqueTabCount > uniqueTabCount) {
+      if (newUniqueCount > uniqueCount) {
         console.log("new unique URL added !!!!!!!!!!!!!!!!");
-        console.log(newUniqueTabCount);
-        uniqueTabCount = newUniqueTabCount;
+        console.log(newUniqueCount);
+        uniqueCount = newUniqueCount;
         console.log(observedLinkArr);
-        openTabsAndTheirCounts(
-          uniqueTabCount,
-          observedLinkArr,
-          userToken,
-          experienceId
-        );
-        const openTabsAndTheirCounts = async (
-          uniqueTabCount,
-          observedLinkArr,
-          userToken,
-          experienceId
-        ) => {
+
+        const openTabsAndTheirCounts = async (uniqueCount, observedLinkArr) => {
           try {
             const res = await fetch(
               // fetch (url,{})
-              "http://localhost:3005/opentabsandtheircounts", //TODO: can usr names be upperCase
+              "http://localhost:3005/experienceCounter/opentabsandtheircounts", //TODO: can usr names be upperCase
               {
                 method: "POST",
                 body: JSON.stringify({
-                  uniqueTabCount: uniqueTabCount,
+                  uniqueCount: uniqueCount,
                   observedLinkArr: observedLinkArr,
-                  userToken: userToken,
-                  experienceId: experienceId,
                 }),
                 headers: {
                   "content-type": "application/json",
@@ -146,12 +134,17 @@ updateBrowserActionBadge = function (open_tabs) {
             console.log("got problem in fetch API ");
           }
         };
+        const sosis = async () => {
+          let bangeladesh = await openTabsAndTheirCounts(
+            uniqueCount,
+            observedLinkArr
+          );
+          console.log(openTabsAndTheirCounts.count);
+        };
+        sosis();
       }
     });
   } else {
-    console.log(
-      "!( open_tabs === undefined || open_tabs.settings.show_browser_action_count === true)"
-    );
   }
 };
 
