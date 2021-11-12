@@ -8,6 +8,10 @@ Capture the open tabs in the browser and count them, if you open the console log
 Refrences:
 Used method from https://gist.github.com/jlewin/5343915 and some functions from "homepage_url": "https://github.com/sylouuu/chrome-open-tabs".
 
+
+# Donate
+
+
 If you liked that dont forget to support
 donate a bier for me under paypal link :
 
@@ -20,7 +24,6 @@ https://paypal.me/FARBODAPRIN?locale.x=en_US
 <img src="https://user-images.githubusercontent.com/17232450/132566016-c716891f-8bdc-43c3-b057-854d9d244ee0.jpg" width= "230px">
 
 
-# Donate
 
 <form action="https://www.paypal.com/donate" method="post" target="_top">
 <input type="hidden" name="hosted_button_id" value="KZCP6RUTYSS44" />
