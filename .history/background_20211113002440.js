@@ -135,8 +135,7 @@ updateBrowserActionBadge = function (open_tabs) {
             );
             // console.log(res);
             let result = await res.json();
-            //return result;
-            console.log(result);
+            return result;
           } catch (error) {
             console.log("got problem in fetch API ");
           }
